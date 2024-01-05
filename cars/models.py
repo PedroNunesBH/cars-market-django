@@ -3,7 +3,7 @@ from django.db import models
 
 class Brand(models.Model):  # Criacao de um banco de dados para marcas do carro
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=200, default='')
+    name = models.CharField(max_length=200, blank=False, null=False)
 
     def __str__(self):
         return self.name  # Modificando a representação dos objetos para o atributo name
