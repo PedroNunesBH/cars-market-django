@@ -5,8 +5,8 @@ from .models import Car
 
 
 class CarAdmin(admin.ModelAdmin):
-    list_display = ('model', 'brand', 'factory_year', 'model_year', 'value')
-    search_fields = ('model',)
+    list_display = ('model', 'brand', 'factory_year', 'model_year', 'value')  # Campos que serão mostrados
+    search_fields = ('model', 'brand')  # Campo(s) que serão usados para fazer busca
 
 
-admin.site.register(Car)
+admin.site.register(Car, CarAdmin)
