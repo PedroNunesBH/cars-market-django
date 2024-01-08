@@ -1,11 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Meus Carros</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Página de Carros da Revenda">
+    <title>Carros Disponíveis</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/index.css' %}">
 </head>
 <body>
-    <h1>Carros da Pycode BR</h1>
-    <p>Só Carro TOP!</p>
+    <header>
+        <h1 class="titulo">Carros On</h1>
+        <nav class="lista-de-navegacao">
+           <a href="/">Home</a>
+            <a href="/">Contato</a>
+            <a href="/">Sobre Nós</a>
+        </nav>
+    <ul>
+        <li class="lista-cabecalho"><a href="/">Entrar</a></li>
+        <li class="lista-cabecalho"><a href="">Cadastrar</a></li>
+    </ul>
+    </header>
+    <main>
+        <h2>Todos os Nossos Carros</h2>
+        <section class="conteudo-principal">
+            {% for car in cars %}
+                <div class="container-carro">
+                    <h3>{{ car.brand }} - {{ car.model }} - {{ car.factory_year }}</h3>
+                    <p class="preco">Preço : {{ car.value }}00</p>
+                </div>
+            {% endfor %}
+        </section>
+    </main>
 </body>
 </html>
