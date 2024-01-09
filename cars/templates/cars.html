@@ -21,15 +21,31 @@
         <li class="lista-cabecalho"><a href="">Cadastrar</a></li>
     </ul>
     </header>
+    <div class="marcas">
+        {% for brand in car_brands %}
+            <a class="marcas" href="/">{{ brand.name }}</a>
+        {% endfor %}
+    </div>
     <main>
         <h2>Todos os Nossos Carros</h2>
+        <div class="conteiner-formulario">
+            <form method="GET" action="{% url 'cars_list' %}">
+                <input type="text" id="search" name="search" placeholder="Buscar carro...">
+                <button class="botao-pesquisa" type="submit">Buscar</button>
+            </form>
+        </div>
         <section class="conteudo-principal">
-            {% for car in cars %}
-                <div class="container-carro">
-                    <h3>{{ car.brand }} - {{ car.model }} - {{ car.factory_year }}</h3>
-                    <p class="preco">Preço : {{ car.value }}00</p>
-                </div>
-            {% endfor %}
+            {% if cars %}
+                {% for car in cars %}
+                    <div class="container-carro">
+                        <img src="{{ car.photo.url }}" alt="Imagem do Carro">
+                        <h3>{{ car.brand }} - {{ car.model }} - {{ car.factory_year }}</h3>
+                        <p class="preco">Preço : R${{ car.value }}00</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="nenhum-resultado">Nenhum resultado encontrado para essa busca.</p>
+            {% endif %}
         </section>
     </main>
 </body>

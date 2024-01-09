@@ -6,5 +6,5 @@ from cars.views import cars_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('cars/', cars_view)  # URL e a view responsavel
+    path('cars/', cars_view, name="cars_list")  # URL e a view responsavel
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
