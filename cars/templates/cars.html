@@ -1,31 +1,5 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Página de Carros da Revenda">
-    <title>Carros Disponíveis</title>
-    <link rel="stylesheet" type="text/css" href="{% static '/css/index.css' %}">
-</head>
-<body>
-    <header>
-        <h1 class="titulo">Carros On</h1>
-        <nav class="lista-de-navegacao">
-           <a class="item-nav" href="/">Home</a>
-            <a class="item-nav" href="/">Contato</a>
-            <a class="item-nav" href="/">Sobre Nós</a>
-        </nav>
-    <ul>
-        <li class="lista-cabecalho"><a class="item-login" href="/">Entrar</a></li>
-        <li class="lista-cabecalho"><a class="item-login" href="">Cadastrar</a></li>
-    </ul>
-    </header>
-    <div class="marcas">
-        {% for brand in car_brands %}
-            <a class="marca" href="/">{{ brand.name }}</a>
-        {% endfor %}
-    </div>
+    {% extends 'base.html' %}
+    {% block content %}
     <main>
         <h2>Todos os Nossos Carros</h2>
         <div class="conteiner-formulario">
@@ -48,5 +22,4 @@
             {% endif %}
         </section>
     </main>
-</body>
-</html>
+    {% endblock %}
