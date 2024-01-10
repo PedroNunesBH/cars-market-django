@@ -12,18 +12,18 @@
     <header>
         <h1 class="titulo">Carros On</h1>
         <nav class="lista-de-navegacao">
-           <a href="/">Home</a>
-            <a href="/">Contato</a>
-            <a href="/">Sobre Nós</a>
+           <a class="item-nav" href="/">Home</a>
+            <a class="item-nav" href="/">Contato</a>
+            <a class="item-nav" href="/">Sobre Nós</a>
         </nav>
     <ul>
-        <li class="lista-cabecalho"><a href="/">Entrar</a></li>
-        <li class="lista-cabecalho"><a href="">Cadastrar</a></li>
+        <li class="lista-cabecalho"><a class="item-login" href="/">Entrar</a></li>
+        <li class="lista-cabecalho"><a class="item-login" href="">Cadastrar</a></li>
     </ul>
     </header>
     <div class="marcas">
         {% for brand in car_brands %}
-            <a class="marcas" href="/">{{ brand.name }}</a>
+            <a class="marca" href="/">{{ brand.name }}</a>
         {% endfor %}
     </div>
     <main>
