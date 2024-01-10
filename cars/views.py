@@ -21,3 +21,8 @@ def cars_view(request):
         'cars.html',
         {'cars': cars, 'car_brands': car_brands})
 
+
+def user_register_new_car(request):
+    car_brands = Brand.objects.all()  # Retornando uma Query Set com todas as marcas para acesso no html
+    return render(request, 'user_register_car.html', {'car_brands': car_brands})
+
