@@ -99,3 +99,13 @@ form {
     color: white;
     margin: 10px 5px;
 }
+
+.rodape {
+    display: grid;
+    background-color: #333;
+    text-align: center;
+}
+
+.item-rodape {
+    color: white;
+}
