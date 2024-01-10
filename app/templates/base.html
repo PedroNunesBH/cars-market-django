@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Página de Carros da Revenda">
     <title>Carros Disponíveis</title>
-    <link rel="stylesheet" type="text/css" href="{% static '/css/index.css' %}">
+    {% block styles %}
+        <link rel="stylesheet" type="text/css" href="{% static '/css/index.css' %}">
+    {% endblock %}
 </head>
 <body>
     <header>
@@ -15,6 +17,7 @@
            <a class="item-nav" href="/">Home</a>
             <a class="item-nav" href="/">Contato</a>
             <a class="item-nav" href="/">Sobre Nós</a>
+            <a class="item-nav" href="/user_register_car">Anunciar Novo Carro</a>
         </nav>
     <ul>
         <li class="lista-cabecalho"><a class="item-login" href="/">Entrar</a></li>

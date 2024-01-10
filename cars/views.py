@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from .models import Car, Brand
+from cars.forms import RegisterNewCarByUserForm
 
 
 def cars_view(request):
@@ -24,5 +25,12 @@ def cars_view(request):
 
 def user_register_new_car(request):
     car_brands = Brand.objects.all()  # Retornando uma Query Set com todas as marcas para acesso no html
-    return render(request, 'user_register_car.html', {'car_brands': car_brands})
+    if request.method == "POST":  # request.method permite verificar qwual metodo esta sendo utilizado na request
+        form_to_register_new_car_by_user = RegisterNewCarByUserForm(request.POST, request.FILES)  # Recebendo os dados e arquivos preenchidos
+        if form_to_register_new_car_by_user.is_valid():  # Verificando se é valido
+            form_to_register_new_car_by_user.save()  # Chama o metodo save do formulario criado em forms.py
+            return redirect('cars_list')
+    else:
+        form_to_register_new_car_by_user = RegisterNewCarByUserForm()
+    return render(request, 'user_register_car.html', {'car_brands': car_brands, "form_to_register_new_car_by_user":  form_to_register_new_car_by_user})
 

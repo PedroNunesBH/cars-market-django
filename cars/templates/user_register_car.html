@@ -1,1 +1,17 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
+{% block styles %}
+    {{ block.super }}  <!-- Chama o link do template base html !-->
+{% endblock %}
+
+{% block content %}
+    <main>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                {{ form_to_register_new_car_by_user.as_table }}
+            </table>
+                <input class="btn-primary" type="submit" value="Cadastrar">
+        </form>
+    </main>
+{% endblock %}
