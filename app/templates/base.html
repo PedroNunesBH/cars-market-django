@@ -20,8 +20,13 @@
             <a class="item-nav" href="/user_register_car">Anunciar Novo Carro</a>
         </nav>
     <ul>
-        <li class="lista-cabecalho"><a class="item-login" href="/">Entrar</a></li>
-        <li class="lista-cabecalho"><a class="item-login" href="">Cadastrar</a></li>
+        {% if request.user.is_authenticated %}
+            <li class="lista-cabecalho"><a class="item-login" href="/">Painel de Controle</a></li>
+            <li class="lista-cabecalho"><a class="item-login" href="">Sair</a></li>
+        {% else %}
+             <li class="lista-cabecalho"><a class="item-login" href="/">Entrar</a></li>
+            <li class="lista-cabecalho"><a class="item-login" href="">Cadastrar</a></li>
+        {% endif %}
     </ul>
     </header>
     <div class="marcas">
