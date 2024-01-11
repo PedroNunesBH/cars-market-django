@@ -8,5 +8,12 @@
     <main>
         <h2>Bem Vindo(a)</h2>
         <p class="descricao-registro">Registre-se Em Nossa Plataforma</p>
+
+        <form class="user-register-form" method="POST">
+            {% csrf_token %}
+            {{ user_creation_form.as_p }}
+
+            <input class="btn-register" type="submit" value="Cadastrar">
+        </form>
     </main>
 {% endblock %}
