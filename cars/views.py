@@ -34,7 +34,3 @@ def user_register_new_car(request):
         form_to_register_new_car_by_user = RegisterNewCarByUserForm()
     return render(request, 'user_register_car.html', {'car_brands': car_brands, "form_to_register_new_car_by_user":  form_to_register_new_car_by_user})
 
-
-def create_user(request):
-    car_brands = Brand.objects.all()
-    return render(request, 'create_user.html', {'car_brands': car_brands})

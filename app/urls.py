@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from cars.views import cars_view, user_register_new_car, create_user
+from cars.views import cars_view, user_register_new_car
+from users.views import create_user
 
 urlpatterns = [
     path('admin/', admin.site.urls),
