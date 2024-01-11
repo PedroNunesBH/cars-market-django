@@ -12,7 +12,7 @@
             {% if cars %}
                 {% for car in cars %}
                     <div class="container-carro">
-                        <img src="{{ car.photo.url }}" alt="Imagem do Carro">
+                        <img src="{{ car.photo.url }}" alt="Imagem do Carro" width="500" height="300">
                         <h3>{{ car.brand }} - {{ car.model }} - {{ car.factory_year }}</h3>
                         <p class="preco">Preço : R${{ car.value }}00</p>
                     </div>
