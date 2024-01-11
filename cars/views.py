@@ -23,18 +23,6 @@ def cars_view(request):
         {'cars': cars, 'car_brands': car_brands})
 
 
-"""def user_register_new_car(request):
-    car_brands = Brand.objects.all()  # Retornando uma Query Set com todas as marcas para acesso no html
-    if request.method == "POST":  # request.method permite verificar qwual metodo esta sendo utilizado na request
-        form_to_register_new_car_by_user = RegisterNewCarByUserForm(request.POST, request.FILES)  # Recebendo os dados e arquivos preenchidos
-        if form_to_register_new_car_by_user.is_valid():  # Verificando se é valido
-            form_to_register_new_car_by_user.save()  # Chama o metodo save do formulario criado em forms.py
-            return redirect('cars_list')
-    else:
-        form_to_register_new_car_by_user = RegisterNewCarByUserForm()
-    return render(request, 'user_register_car.html', {'car_brands': car_brands, "form_to_register_new_car_by_user":  form_to_register_new_car_by_user})"""
-
-
 def user_register_new_car(request):
     car_brands = Brand.objects.all()  # Retornando uma Query Set com todas as marcas para acesso no html
     if request.method == "POST":  # request.method permite verificar qwual metodo esta sendo utilizado na request
@@ -47,5 +35,6 @@ def user_register_new_car(request):
     return render(request, 'user_register_car.html', {'car_brands': car_brands, "form_to_register_new_car_by_user":  form_to_register_new_car_by_user})
 
 
-
-
+def create_user(request):
+    car_brands = Brand.objects.all()
+    return render(request, 'create_user.html', {'car_brands': car_brands})

@@ -34,9 +34,8 @@ header {
     list-style: none;
 }
 
-li {
+ul li {
     display: inline-block;
-    color: white;
 }
 
 h2 {
