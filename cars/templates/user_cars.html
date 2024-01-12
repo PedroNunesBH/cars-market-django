@@ -4,14 +4,19 @@
     <main>
         <h2>Veja todos seus anuncios {{ request.user|capfirst }}</h2>
         <section class="conteudo-principal">
+            {% if cars_by_user %}
                 {% for car in cars_by_user %}
                     <div class="container-carro">
                         <img src="{{ car.photo.url }}" alt="Imagem do Carro" width="500" height="300">
                         <h3>{{ car.brand }} - {{ car.model }} - {{ car.factory_year }}</h3>
                         <p class="preco">Preço : R${{ car.value }}00</p>
                         <p class="preco">Autor : {{ car.autor.username }}</p>
+                        <a class="btn-detail-car" href="/">Saiba Mais</a>
                     </div>
                 {% endfor %}
+            {% else %}
+                <p class="nenhum-resultado">Nenhum resultado encontrado para essa busca.</p>
+            {% endif %}
         </section>
     </main>
 {% endblock %}

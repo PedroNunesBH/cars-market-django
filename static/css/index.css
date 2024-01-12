@@ -120,3 +120,10 @@ main {
 footer {
     margin-top: auto;
 }
+
+.btn-detail-car {
+    text-decoration: none;
+    color: white;
+    background: green;
+    padding: 10px;
+}
