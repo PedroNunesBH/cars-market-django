@@ -30,4 +30,8 @@ def login_view(request):
             auth_form = AuthenticationForm()
     else:
         auth_form = AuthenticationForm()
-    return render(request, "login.html", {'car_objects': car_brands, 'auth_form': auth_form})
+    return render(request, "login.html", {'car_brands': car_brands, 'auth_form': auth_form})
+
+def logout_view(request):
+    car_brands = Brand.objects.all()
+    return render(request, 'logout.html', {'car_brands': car_brands})
