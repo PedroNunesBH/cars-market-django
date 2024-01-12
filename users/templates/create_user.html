@@ -11,7 +11,18 @@
 
         <form class="user-register-form" method="POST">
             {% csrf_token %}
-            {{ user_creation_form.as_p }}
+
+            <label>Usuário :</label>
+            {{ user_creation_form.username }}  <!-- Acessando o campo username do formulario !-->
+            {{ user_creation_form.username.errors }}  <!-- Acessando a mensagem de erro do campo username !-->
+
+            <label>Senha :</label>
+            {{ user_creation_form.password1 }}  <!-- Acessando o campo password1 do formulario !-->
+            {{ user_creation_form.password1.errors }}  <!-- Acessando a mensagem de erro do campo password1 !-->
+
+            <label>Confirme Sua Senha :</label>
+            {{ user_creation_form.password2 }}  <!-- Acessando o campo password2 do formulario !-->
+            {{ user_creation_form.password2.errors }}  <!-- Acessando a mensagem de erro do campo password2 !-->
 
             <input class="btn-register" type="submit" value="Cadastrar">
         </form>

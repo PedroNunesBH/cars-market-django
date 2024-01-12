@@ -9,4 +9,10 @@
 
 .user-register-form input {
     font-size: 1.2rem;
+    display: block;
+    margin: 20px;
+}
+
+.user-register-form label {
+    margin-left: 80px;
 }
