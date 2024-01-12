@@ -28,9 +28,18 @@ def user_register_new_car(request):
     if request.method == "POST":  # request.method permite verificar qwual metodo esta sendo utilizado na request
         form_to_register_new_car_by_user = RegisterNewCarByUserForm(request.POST, request.FILES)  # Recebendo os dados e arquivos preenchidos
         if form_to_register_new_car_by_user.is_valid():  # Verificando se é valido
-            form_to_register_new_car_by_user.save()  # Chama o metodo save do formulario criado em forms.py
+            new_car = form_to_register_new_car_by_user.save(
+                commit=False)  # Salva o objeto do formulário, mas não persiste no banco de dados ainda
+            new_car.autor = request.user  # Associa o usuário atual ao novo carro
+            new_car.save()  # Agora salva o objeto no banco de dados
             return redirect('cars_list')
     else:
         form_to_register_new_car_by_user = RegisterNewCarByUserForm()
     return render(request, 'user_register_car.html', {'car_brands': car_brands, "form_to_register_new_car_by_user":  form_to_register_new_car_by_user})
 
+
+def cars_user(request):
+    car_brands = Brand.objects.all()
+    user_id = request.user.id  # Capturando o id do user
+    cars_by_user = Car.objects.filter(autor_id=user_id)  # Filtrando os carros que foram registrados(autor) pelo user
+    return render(request, 'user_cars.html', {'car_brands': car_brands, 'cars_by_user': cars_by_user})

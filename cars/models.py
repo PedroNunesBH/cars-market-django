@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Brand(models.Model):  # Criacao de um banco de dados para marcas do carro
@@ -18,6 +19,7 @@ class Car(models.Model):
     plate = models.CharField(max_length=10, blank=True, null=True)
     value = models.FloatField(blank=True, null=True)
     photo = models.ImageField(upload_to='cars/', blank=True, null=True)  # Definicao de um campo de imagem e aonde elas serão armazenadas
+    autor = models.ForeignKey(User, on_delete=models.PROTECT, related_name='car_user', null=True, editable=False)  # Cria um campo de FK associada ao model padrao do django User
 
     def __str__(self):
         return self.model  # Configurando para o objeto ser representado pelo seu atributo model

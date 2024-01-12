@@ -17,7 +17,10 @@
            <a class="item-nav" href="/">Home</a>
             <a class="item-nav" href="/">Contato</a>
             <a class="item-nav" href="/">Sobre Nós</a>
-            <a class="item-nav" href="/user_register_car">Anunciar Novo Carro</a>
+            {% if user.is_authenticated %}
+                <a class="item-nav" href="/user_register_car">Anunciar Novo Carro</a>
+                <a class="item-nav" href="/my_cars">Meus Carros</a>
+            {% endif %}
         </nav>
     <ul>
         {% if request.user.is_authenticated %}
