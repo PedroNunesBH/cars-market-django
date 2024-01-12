@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.views.generic import TemplateView
 from cars.models import Brand
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -32,6 +32,7 @@ def login_view(request):
         auth_form = AuthenticationForm()
     return render(request, "login.html", {'car_brands': car_brands, 'auth_form': auth_form})
 
+
 def logout_view(request):
-    car_brands = Brand.objects.all()
-    return render(request, 'logout.html', {'car_brands': car_brands})
+    logout(request)  # Realiza o logout
+    return redirect('cars_list')
