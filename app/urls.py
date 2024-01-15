@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from cars.views import CarsUser, CarView, UserRegisterNewCar, DetailCar
+from cars.views import CarsUser, CarView, UserRegisterNewCar, DetailCar, UpdateCar
 from users.views import create_user, login_view, logout_view
 
 urlpatterns = [
@@ -14,4 +14,5 @@ urlpatterns = [
     path('logout/', logout_view, name='logout_page'),
     path('my_cars/', CarsUser.as_view(), name='cars_user'),
     path('detail_car/<int:pk>/', DetailCar.as_view(), name='detail_car'),  # Define que será recebido um parametro pk(primary-key) do tipo inteiro
+    path('update_car/<int:pk>/', UpdateCar.as_view(), name='update_car'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

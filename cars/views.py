@@ -102,5 +102,11 @@ class DetailCar(DetailView):
 
 class UpdateCar(UpdateView):
     model = Car
-    form_class = CarModelForm
+    form_class = RegisterNewCarByUserForm
     template_name = 'update_car.html'
+    success_url = reverse_lazy('cars_list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['car_brands'] = Brand.objects.all()
+        return context
