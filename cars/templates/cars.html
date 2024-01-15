@@ -9,13 +9,14 @@
             </form>
         </div>
         <section class="conteudo-principal">
-            {% if cars %}
-                {% for car in cars %}
+            {% if object_list %}
+                {% for car in object_list %}
                     <div class="container-carro">
                         <img src="{{ car.photo.url }}" alt="Imagem do Carro" width="500" height="300">
                         <h3>{{ car.brand }} - {{ car.model }} - {{ car.factory_year }}</h3>
                         <p class="preco">Preço : R${{ car.value }}00</p>
-                        <p class="preco">Autor : {{ car.autor.username }}</p>
+                        <p class="preco">Autor : {{ car.autor|capfirst }}</p>
+                        <p class="preco">Data do Registro : {{ car.day_time }}</p>
                         <a class="btn-detail-car" href="/">Saiba Mais</a>
                     </div>
                 {% endfor %}

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone # Importa a funcao timezone
 
 
 class Brand(models.Model):  # Criacao de um banco de dados para marcas do carro
@@ -20,6 +21,10 @@ class Car(models.Model):
     value = models.FloatField(blank=True, null=True)
     photo = models.ImageField(upload_to='cars/', blank=True, null=True)  # Definicao de um campo de imagem e aonde elas serão armazenadas
     autor = models.ForeignKey(User, on_delete=models.PROTECT, related_name='car_user', null=True, editable=False)  # Cria um campo de FK associada ao model padrao do django User
+    day_time = models.DateTimeField(default=timezone.now, editable=False, null=True)  # Define um campo de data e hora e estabelece como padrao o dia e a hora atual
+
+    class Meta:
+        ordering = ['model']
 
     def __str__(self):
         return self.model  # Configurando para o objeto ser representado pelo seu atributo model

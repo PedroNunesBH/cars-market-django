@@ -6,12 +6,16 @@
 
 {% block content %}
     <main>
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <table>
-                {{ form_to_register_new_car_by_user.as_table }}
-            </table>
-                <input class="btn-primary" type="submit" value="Cadastrar">
-        </form>
+        {% if user.is_authenticated %}
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table>
+                    {{ form.as_table }}
+                </table>
+                    <input class="btn-primary" type="submit" value="Cadastrar">
+            </form>
+        {% else %}
+        <p class="advice-register-car">Para cadastrar um carro você precisa fazer login em sua conta.</p>
+        {% endif %}
     </main>
 {% endblock %}

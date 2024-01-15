@@ -24,8 +24,10 @@ class RegisterNewCarByUserForm(forms.ModelForm):  # Criando classe que herda de 
         plate = self.cleaned_data.get('plate')
         if len(plate) < 8:
             self.add_error('plate', "Insira uma placa válida.")
+        return plate
 
     def clean_model_year(self):  # Criando um metodo de validacao do formulario (indicado pelo clean_)
         model_year = self.cleaned_data.get('model_year')  # Capturando o valor de model_year
         if model_year > 2025:
             self.add_error('model_year', "Insira um ano de modelo correto.")  # Adicionando a mensagem de erro
+        return model_year

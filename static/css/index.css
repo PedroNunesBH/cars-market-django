@@ -124,6 +124,12 @@ footer {
 .btn-detail-car {
     text-decoration: none;
     color: white;
-    background: green;
+    background: red;
     padding: 10px;
+}
+
+.advice-register-car {
+    text-align: center;
+    margin-top: 200px;
+    font-weight: 600;
 }
