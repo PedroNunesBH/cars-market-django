@@ -24,7 +24,7 @@ class Car(models.Model):
     day_time = models.DateTimeField(default=timezone.now, editable=False, null=True)  # Define um campo de data e hora e estabelece como padrao o dia e a hora atual
 
     class Meta:
-        ordering = ['model']
+        ordering = ['model']  # Define a ordem que os objetos do model serão recuperados
 
     def __str__(self):
         return self.model  # Configurando para o objeto ser representado pelo seu atributo model

@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, reverse
-from django.views.generic import TemplateView, ListView, FormView
+from django.views.generic import TemplateView, ListView, FormView, CreateView
 from .models import Car, Brand
 from cars.forms import RegisterNewCarByUserForm
+from django.db.models import Q
 
 """
 def cars_view(request):
@@ -33,10 +34,10 @@ class CarView(ListView):
         return context
 
     def get_queryset(self):  # Metodo utilizado para retornar o QuerySet
-        context = super().get_queryset()
+        queryset = super().get_queryset().order_by('model')  # Configura a query set do metodo da classe pai para ser ordenado pelo model (Car.objects.all().order_by('model)
         search = self.request.GET.get('search', '')  # Captura o valor de search
-        cars = Car.objects.filter(model__contains=search)
-        return cars
+        queryset = Car.objects.filter(Q(model__icontains=search) | Q(brand__name__icontains=search))  # Retorna os carros que contem a 'search' em seu modelo ou em sua brand name relacionada !
+        return queryset
 
 """
 def user_register_new_car(request):
@@ -55,17 +56,17 @@ def user_register_new_car(request):
 """
 
 
-class UserRegisterNewCar(FormView):
+class UserRegisterNewCar(CreateView):  # A create view é utilizada para as CBV's que a principal finalidade é criar objetos em um BD
+    model = Car  # Modelo que será criado os objetos
+    form_class = RegisterNewCarByUserForm  # Formulario responsavel pela criação do objeto
     template_name = 'user_register_car.html'
-    form_class = RegisterNewCarByUserForm
+    sucess_url = '/cars/'
 
-    def get_success_url(self):
-        return reverse('cars_list')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['car_brands'] = Brand.objects.all()
+        return context
 
-    def form_valid(self, form):  #  Verifica se o formulário é válido
-        form.instance.autor = self.request.user  # Capturando o usuario da sessao e atribuindo ao campo autor do formulario
-        form.save()  # Salva o formulário para criar registro no banco de dados
-        return super().form_valid(form)
 
 """
 def cars_user(request):

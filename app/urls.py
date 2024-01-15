@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from cars.views import UserRegisterNewCar, CarsUser, CarView
+from cars.views import CarsUser, CarView, UserRegisterNewCar
 from users.views import create_user, login_view, logout_view
 
 urlpatterns = [
