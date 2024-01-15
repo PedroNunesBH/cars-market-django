@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse
-from django.views.generic import TemplateView, ListView, FormView, CreateView, DetailView, UpdateView
+from django.views.generic import TemplateView, ListView, FormView, CreateView, DetailView, UpdateView, DeleteView
 from .models import Car, Brand
 from cars.forms import RegisterNewCarByUserForm
 from django.db.models import Q
@@ -105,6 +105,17 @@ class UpdateCar(UpdateView):
     form_class = RegisterNewCarByUserForm
     template_name = 'update_car.html'
     success_url = reverse_lazy('cars_list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['car_brands'] = Brand.objects.all()
+        return context
+
+
+class DeleteCar(DeleteView):
+    template_name = 'delete_car.html'
+    model = Car
+    succes_url = reverse_lazy('cars_list')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()

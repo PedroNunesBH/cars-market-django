@@ -2,6 +2,7 @@
 
 {% block content %}
     <main>
+    {% if user.is_authenticated %}
         <h2>Veja todos seus anuncios {{ request.user|capfirst }}</h2>
         <section class="conteudo-principal">
             {% if cars_by_user %}
@@ -12,11 +13,15 @@
                         <p class="preco">Preço : R${{ car.value }}00</p>
                         <p class="preco">Autor : {{ car.autor|capfirst }}</p>
                         <a class="btn-detail-car" href="/">Saiba Mais</a>
+                        <a class="btn-detail-car" href="{% url 'update_car' car.id %}">Editar Carro</a>
                     </div>
                 {% endfor %}
             {% else %}
                 <p class="nenhum-resultado">Nenhum resultado encontrado para essa busca.</p>
             {% endif %}
+    {% else %}
+        <p> Para acessar essa página,faça login em sua conta.</p>
+    {% endif %}
         </section>
     </main>
 {% endblock %}
