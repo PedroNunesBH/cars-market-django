@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+    {{ block.super}}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/detail_car.css' %}">
+{% endblock %}
+
+{% block content %}
+    <main class="principal">
+        <h2> {{ object.brand }} - {{ object.model }}</h2>
+        <div class="container-detail-car">
+            <img src="{{ car.photo.url }}" alt="Imagem do Carro" width="100%" height="100%">
+            <p class="preco">Preço : R${{ car.value }}00</p>
+            <p class="preco">Ano de Fabricação : {{ object.factory_year }}</p>
+            <p class="preco">Modelo : {{ object.model_year }}</p>
+            <p class="preco">Preço : {{ object.plate }}</p>
+            <p class="preco">Autor : {{ car.autor|capfirst }}</p>
+            <p class="preco">Data do Registro : {{ car.day_time }}</p>
+        </div>
+    </main>
+{% endblock %}

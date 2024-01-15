@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, reverse
-from django.views.generic import TemplateView, ListView, FormView, CreateView
+from django.views.generic import TemplateView, ListView, FormView, CreateView, DetailView, UpdateView
 from .models import Car, Brand
 from cars.forms import RegisterNewCarByUserForm
 from django.db.models import Q
+from django.urls import reverse_lazy
 
 """
 def cars_view(request):
@@ -60,7 +61,7 @@ class UserRegisterNewCar(CreateView):  # A create view é utilizada para as CBV'
     model = Car  # Modelo que será criado os objetos
     form_class = RegisterNewCarByUserForm  # Formulario responsavel pela criação do objeto
     template_name = 'user_register_car.html'
-    sucess_url = '/cars/'
+    success_url = reverse_lazy('cars_list')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
@@ -87,3 +88,19 @@ class CarsUser(ListView):
         context['cars_by_user'] = Car.objects.filter(autor_id=user_id)  # Criando o contexto cars_by_user que são os objetos do model Car que tem como autor o usuario
         context['car_brands'] = Brand.objects.all()
         return context
+
+
+class DetailCar(DetailView):
+    model = Car
+    template_name = 'detail_car.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['car_brands'] = Brand.objects.all()
+        return context
+
+
+class UpdateCar(UpdateView):
+    model = Car
+    form_class = CarModelForm
+    template_name = 'update_car.html'

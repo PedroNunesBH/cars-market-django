@@ -1,0 +1,21 @@
+body {
+    margin: 0px;
+}
+
+.principal {
+    display: grid;
+    place-items: center;
+}
+
+.container-detail-car {
+    display: grid;
+    width: 1000px;
+    margin: 20px;
+    border: 3px solid red;
+    place-items: center;
+    background-color: white;
+}
+
+.preco {
+    background-color: green;
+}

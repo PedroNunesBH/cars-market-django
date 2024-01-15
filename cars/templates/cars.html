@@ -17,7 +17,7 @@
                         <p class="preco">Preço : R${{ car.value }}00</p>
                         <p class="preco">Autor : {{ car.autor|capfirst }}</p>
                         <p class="preco">Data do Registro : {{ car.day_time }}</p>
-                        <a class="btn-detail-car" href="/">Saiba Mais</a>
+                        <a class="btn-detail-car" href="{% url 'detail_car' car.id %}">Saiba Mais</a>
                     </div>
                 {% endfor %}
             {% else %}

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone # Importa a funcao timezone
+from django.shortcuts import reverse
 
 
 class Brand(models.Model):  # Criacao de um banco de dados para marcas do carro
