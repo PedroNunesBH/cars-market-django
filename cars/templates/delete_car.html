@@ -1,5 +1,18 @@
 {% extends 'base.html' %}
 
+{% block styles %}
+    {{ block.super }}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/delete_car.css' %}">
+{% endblock %}
 {% block content %}
-
+    <main>
+        <h1 class="delete-title">Deletar Carro</h1>
+        <p class="delete-text-1">Tem certeza que deseja deletar o carro {{ car.brand }} {{ car.model }}</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Deletar Carro</button>
+            <a href="{% url 'cars_list' %}">Cancelar</a>
+        </form>
+    </main>
 {% endblock %}

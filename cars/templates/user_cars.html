@@ -14,6 +14,7 @@
                         <p class="preco">Autor : {{ car.autor|capfirst }}</p>
                         <a class="btn-detail-car" href="/">Saiba Mais</a>
                         <a class="btn-detail-car" href="{% url 'update_car' car.id %}">Editar Carro</a>
+                        <a class="btn-detail-car" href="{% url 'delete_my_car' car.id %}">Deletar Carro</a>
                     </div>
                 {% endfor %}
             {% else %}

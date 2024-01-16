@@ -4,6 +4,8 @@ from .models import Car, Brand
 from cars.forms import RegisterNewCarByUserForm
 from django.db.models import Q
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 """
 def cars_view(request):
@@ -57,6 +59,7 @@ def user_register_new_car(request):
 """
 
 
+@method_decorator(login_required(login_url='/login/'), name='dispatch')  # Adiciona um decorador para o methodo dispatch
 class UserRegisterNewCar(CreateView):  # A create view é utilizada para as CBV's que a principal finalidade é criar objetos em um BD
     model = Car  # Modelo que será criado os objetos
     form_class = RegisterNewCarByUserForm  # Formulario responsavel pela criação do objeto
@@ -78,6 +81,7 @@ def cars_user(request):
 """
 
 
+@method_decorator(login_required, name='dispatch')
 class CarsUser(ListView):
     model = Car  # Modelo que a listview é associada
     template_name = 'user_cars.html'  # Template que sera renderizado
@@ -100,6 +104,7 @@ class DetailCar(DetailView):
         return context
 
 
+@method_decorator(login_required, name='dispatch')
 class UpdateCar(UpdateView):
     model = Car
     form_class = RegisterNewCarByUserForm
@@ -112,10 +117,11 @@ class UpdateCar(UpdateView):
         return context
 
 
+@method_decorator(login_required, name='dispatch')
 class DeleteCar(DeleteView):
     template_name = 'delete_car.html'
     model = Car
-    succes_url = reverse_lazy('cars_list')
+    success_url = reverse_lazy('cars_list')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
