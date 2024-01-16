@@ -35,7 +35,7 @@
     </header>
     <div class="marcas">
         {% for brand in car_brands %}
-            <a class="marca" href="/">{{ brand.name }}</a>
+            <a class="marca" href="{% url 'list_by_brand' brand.id %}">{{ brand.name }}</a>
         {% endfor %}
     </div>
 

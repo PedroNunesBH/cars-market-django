@@ -31,8 +31,7 @@ class CarView(ListView):
     model = Car
     template_name = 'cars.html'
 
-
-    def get_context_data(self, **kwargs): # Metodo para criar e acessar contextos
+    def get_context_data(self, **kwargs):  # Metodo para criar e acessar contextos
         context = super().get_context_data(**kwargs)
         context["car_brands"] = Brand.objects.all()  # Criando contexto 'car_brands'
         return context
@@ -149,3 +148,22 @@ class CarsTopViews(ListView):
         queryset = super().get_queryset()  # Define queryset como o metodo padrao(car.objects.all())
         queryset = queryset.order_by('-views_by_user')[0:5]  # Ordena car.objects.all do maior para o menor em visualizacoes e pega os 5 primeiros
         return queryset
+
+
+class BrandListView(ListView):
+    model = Car
+    template_name = 'brand_list.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        marca = self.kwargs.get('pk', None)  # Captura o pk da marca da request
+        if marca:
+            queryset = queryset.filter(brand_id=marca)  # Captura os carros da marca
+        else:
+            queryset = queryset
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['car_brands'] = Brand.objects.all()
+        return context
