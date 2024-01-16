@@ -23,6 +23,7 @@ class Car(models.Model):
     photo = models.ImageField(upload_to='cars/', blank=True, null=True)  # Definicao de um campo de imagem e aonde elas serão armazenadas
     autor = models.ForeignKey(User, on_delete=models.PROTECT, related_name='car_user', null=True, editable=False)  # Cria um campo de FK associada ao model padrao do django User
     day_time = models.DateTimeField(default=timezone.now, editable=False, null=True)  # Define um campo de data e hora e estabelece como padrao o dia e a hora atual
+    views_by_user = models.IntegerField(default=0, editable=False)
 
     class Meta:
         ordering = ['model']  # Define a ordem que os objetos do model serão recuperados

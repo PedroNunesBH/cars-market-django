@@ -31,6 +31,7 @@ class CarView(ListView):
     model = Car
     template_name = 'cars.html'
 
+
     def get_context_data(self, **kwargs): # Metodo para criar e acessar contextos
         context = super().get_context_data(**kwargs)
         context["car_brands"] = Brand.objects.all()  # Criando contexto 'car_brands'
@@ -97,6 +98,12 @@ class CarsUser(ListView):
 class DetailCar(DetailView):
     model = Car
     template_name = 'detail_car.html'
+
+    def get(self, request, *args, **kwargs):
+        car = self.get_object()  # Capturando qual o carro da detail view
+        car.views_by_user += 1  # Incrementando em views_by_user 1 a cada get
+        car.save()  # Salvando as alterações do objeto no bd
+        return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
