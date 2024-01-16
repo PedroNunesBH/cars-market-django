@@ -134,3 +134,18 @@ class DeleteCar(DeleteView):
         context = super().get_context_data()
         context['car_brands'] = Brand.objects.all()
         return context
+
+
+class CarsTopViews(ListView):
+    model = Car
+    template_name = 'top_views.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['car_brands'] = Brand.objects.all()
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()  # Define queryset como o metodo padrao(car.objects.all())
+        queryset = queryset.order_by('-views_by_user')[0:5]  # Ordena car.objects.all do maior para o menor em visualizacoes e pega os 5 primeiros
+        return queryset
