@@ -39,3 +39,6 @@ class CarInventory(models.Model):
 
     class Meta:
         ordering = ['-register_date']
+
+    def __str__(self):
+        return f'{self.total_cars} - `{self.all_cars_value}'
