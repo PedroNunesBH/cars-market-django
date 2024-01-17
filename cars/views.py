@@ -66,6 +66,10 @@ class UserRegisterNewCar(CreateView):  # A create view é utilizada para as CBV'
     template_name = 'user_register_car.html'
     success_url = reverse_lazy('cars_list')
 
+    def form_valid(self, form):
+        form.instance.autor = self.request.user  # Adiciona ao campo autor o user da requisicao
+        return super().form_valid(form)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context['car_brands'] = Brand.objects.all()
@@ -158,7 +162,7 @@ class BrandListView(ListView):
         queryset = super().get_queryset()
         marca = self.kwargs.get('pk', None)  # Captura o pk da marca da request
         if marca:
-            queryset = queryset.filter(brand_id=marca)  # Captura os carros da marca
+            queryset = queryset.filter(brand_id=marca) # Captura os carros da marca
         else:
             queryset = queryset
         return queryset
