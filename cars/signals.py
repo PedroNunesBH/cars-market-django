@@ -31,3 +31,8 @@ def email_novo_carro(sender, instance, **kwargs):
                                 f'Placa : {instance.plate}.'
                                 f'Autor: {instance.autor}.'
                                 f'Data e Hora : {instance.day_time}')
+
+
+@receiver(post_delete, sender=Car)
+def notification_delete(sender, instance, **kwargs):
+    print(f'-----OBJETO { instance } deletado----------')

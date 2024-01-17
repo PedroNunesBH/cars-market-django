@@ -33,6 +33,7 @@ class CarView(ListView):
 
     def get_context_data(self, **kwargs):  # Metodo para criar e acessar contextos
         context = super().get_context_data(**kwargs)
+        context['object_list'] = Car.objects.filter(status='aprovado')
         context["car_brands"] = Brand.objects.all()  # Criando contexto 'car_brands'
         return context
 

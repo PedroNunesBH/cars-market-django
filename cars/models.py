@@ -30,3 +30,12 @@ class Car(models.Model):
 
     def __str__(self):
         return self.model  # Configurando para o objeto ser representado pelo seu atributo model
+
+
+class CarInventory(models.Model):
+    total_cars = models.IntegerField()
+    all_cars_value = models.FloatField()
+    register_date = models.DateTimeField(auto_now_add=True)  # Registra automaticamente o campo com data e hora atual
+
+    class Meta:
+        ordering = ['-register_date']
