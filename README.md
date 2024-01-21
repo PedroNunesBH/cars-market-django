@@ -12,6 +12,6 @@ Esse projeto é uma plataforma de anúncios de carros desenvolvido majoritariame
 
 # Tecnologias Utilizadas
 
-  **Django**
-  **HTML**
-  **CSS**
+  - **Django**
+  - **HTML**
+  - **CSS**
